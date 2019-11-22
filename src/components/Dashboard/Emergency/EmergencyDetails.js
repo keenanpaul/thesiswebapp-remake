@@ -8,17 +8,11 @@ export default class EmergencyDetails extends Component {
 
   render() {
     return (
-      <Card fluid color="red" header="Option 1">
+      <Card>
         <Card.Content>
-          <Icon name="emergency" size="mlargeini" />
-          <br />
-          <Card.Header>Emergency</Card.Header>
-          <br />
-          <Card.Description>Emergency Location</Card.Description>
-          <br />
-          <Button basic color="green">
-            Respond
-          </Button>
+          <Card.Header>{this.props.emergencyType}</Card.Header>
+          <Card.Meta>{this.props.timeReceived}</Card.Meta>
+          <Card.Description>{this.props.emergencyLocation}</Card.Description>
         </Card.Content>
       </Card>
     );

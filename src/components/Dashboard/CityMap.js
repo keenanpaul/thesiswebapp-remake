@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import Map from "./Map";
 
 export default class CityMap extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    return <div>CityMap</div>;
+    return (
+      <div>
+        <Map center={{ lat: 10.324646, lng: 123.942197 }} zoom={15} />
+      </div>
+    );
   }
 }
