@@ -12,14 +12,11 @@ export default class Dashboard extends Component {
     return (
       <div>
         <div>
-          <Menu />
+          <EmergencyList />
         </div>
         <div style={{ paddingLeft: "258px" }}>
           <div>
-            <EmergencyList />
-          </div>
-          <div>
-            <CityMap />
+            <Menu />
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Header, Image } from "semantic-ui-react";
+import { Header, Image, Button } from "semantic-ui-react";
+import MenuTabs from "./MenuTabs";
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -10,11 +11,7 @@ export default class Dashboard extends Component {
     return (
       <Header as="h2" attached="top">
         <Header as="h3" textAlign="right">
-          <Image
-            circular
-            src="https://react.semantic-ui.com/images/avatar/large/patrick.png"
-          />{" "}
-          Keenan
+          <MenuTabs />
         </Header>
       </Header>
     );

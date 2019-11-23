@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Card, Modal } from "semantic-ui-react";
+import EmergencyDetailsModal from "./EmergencyDetailsModal";
 
 export default class EmergencyDetails extends Component {
   constructor(props) {
@@ -10,8 +11,21 @@ export default class EmergencyDetails extends Component {
   show = size => () => this.setState({ size, open: true });
   close = () => this.setState({ open: false });
 
-  render() {
+  displayModal = () => {
     const { open, size } = this.state;
+    return (
+      <EmergencyDetailsModal
+        size={size}
+        open={open}
+        close={this.close}
+        emergencyType={this.props.emergencyType}
+        emergencyLocation={this.props.emergencyLocation}
+        date={this.props.date}
+      />
+    );
+  };
+
+  render() {
     return (
       <div>
         <div style={{ padding: "5px" }}>
@@ -25,19 +39,7 @@ export default class EmergencyDetails extends Component {
             </Card.Content>
           </Card>
         </div>
-        <div>
-          <Modal size={size} open={open} onClose={this.close}>
-            <Modal.Header>{this.props.emergencyType}</Modal.Header>
-            <Modal.Content>
-              <p>{this.props.emergencyLocation}</p>
-              <p>{this.props.date}</p>
-            </Modal.Content>
-            <Modal.Actions>
-              <Button negative>Request Volunteers</Button>
-              <Button positive>Send Responders</Button>
-            </Modal.Actions>
-          </Modal>
-        </div>
+        {this.displayModal()}
       </div>
     );
   }
