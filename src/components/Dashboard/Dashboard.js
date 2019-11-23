@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Menu from "./Menu";
-import EmergencyList from "./Emergency/EmergencyList";
+import EmergencyList from "../Emergency/EmergencyList";
 import CityMap from "./CityMap";
 
 export default class Dashboard extends Component {
@@ -14,7 +14,7 @@ export default class Dashboard extends Component {
         <div>
           <Menu />
         </div>
-        <div>
+        <div style={{ paddingLeft: "258px" }}>
           <div>
             <EmergencyList />
           </div>
