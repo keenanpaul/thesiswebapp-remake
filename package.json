@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "animate.css": "^3.7.2",
+    "dotenv": "^8.2.0",
+    "firebase": "^7.5.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-google-maps": "^9.4.5",
+    "react-notifications-component": "^2.2.3",
     "react-places-autocomplete": "^7.2.1",
     "react-scripts": "3.2.0",
     "semantic-ui-react": "^0.88.1"

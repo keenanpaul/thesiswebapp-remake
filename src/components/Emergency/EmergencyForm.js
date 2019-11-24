@@ -12,21 +12,62 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
+import { store } from "react-notifications-component";
+import firestore from "../../config/Firebase";
 
 export default class EmergencyForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: "",
+      incidentLocation: "",
+      incidentType: "",
       incidentCoordinates: {
         lng: "",
         lat: ""
-      }
+      },
+      reportedBy: ""
     };
   }
 
-  handleChange = address => {
-    this.setState({ address });
+  handleChange = incidentLocation => {
+    this.setState({ incidentLocation });
+  };
+
+  addEmergency = e => {
+    e.preventDefault();
+    console.log("submit", this.state);
+
+    const incident = {
+      incidentType: this.state.incidentType,
+      incidentLocation: this.state.incidentLocation,
+      reportedBy: this.state.reportedBy,
+      incidentCoordinates: this.state.incidentCoordinates,
+      dateReceived: Date.now()
+    };
+
+    firestore
+      .collection("Emergency")
+      .doc()
+      .set(incident)
+      .then(() => {
+        console.log("New incident");
+        store.addNotification({
+          title: "New Incident!",
+          message: `${this.state.incidentType} reported by ${this.state.reportedBy}`,
+          type: "danger",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 5000,
+            onScreen: true
+          }
+        });
+      })
+      .catch(error => {
+        console.log("Error", error);
+      });
   };
 
   handleSelect = address => {
@@ -44,14 +85,26 @@ export default class EmergencyForm extends Component {
       .catch(error => console.error("Error", error));
   };
 
+  inputHandler = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
   render() {
     return (
       <Form>
         <Form.Group widths="equal">
-          <Form.Field control={Input} placeholder="Emergency Type" />
+          <Form.Field
+            control={Input}
+            name="incidentType"
+            placeholder="Incident Type"
+            value={this.state.incidentType}
+            onChange={e => {
+              this.inputHandler(e);
+            }}
+          />
           <Form.Field>
             <PlacesAutocomplete
-              value={this.state.address}
+              value={this.state.incidentLocation}
               onChange={this.handleChange}
               onSelect={this.handleSelect}
             >
@@ -64,7 +117,7 @@ export default class EmergencyForm extends Component {
                 <div>
                   <input
                     {...getInputProps({
-                      placeholder: "Search Places ...",
+                      placeholder: "Incident Location",
                       className: "location-search-input"
                     })}
                   />
@@ -94,9 +147,26 @@ export default class EmergencyForm extends Component {
               )}
             </PlacesAutocomplete>
           </Form.Field>
+          <Form.Field
+            control={Input}
+            name="reportedBy"
+            value={this.state.reportedBy}
+            placeholder="Reported by"
+            onChange={e => {
+              this.inputHandler(e);
+            }}
+          />
         </Form.Group>
-        <Form.Field control={TextArea} placeholder="Additional Information" />
-        <Form.Field control={Button}>Add Incident</Form.Field>
+        <Form.Field
+          control={TextArea}
+          name="additionalInformation"
+          value={this.state.additionalInformation}
+          placeholder="Additional Information"
+          onChange={e => {
+            this.inputHandler(e);
+          }}
+        />
+        <Button onClick={e => this.addEmergency(e)}>Report Incident</Button>
       </Form>
     );
   }
