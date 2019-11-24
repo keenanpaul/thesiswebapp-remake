@@ -9,8 +9,8 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <Header as="h2" attached="top">
-        <Header as="h3" textAlign="right">
+      <Header attached="top">
+        <Header textAlign="left">
           <MenuTabs />
         </Header>
       </Header>

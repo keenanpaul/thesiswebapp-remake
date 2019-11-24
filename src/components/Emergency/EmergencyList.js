@@ -44,9 +44,12 @@ export default class EmergencyList extends Component {
   }
 
   renderEmergencies() {
+    let i = 0;
     return this.state.emergencies.map(emergency => {
+      i++;
       return (
         <EmergencyDetails
+          key={i}
           emergencyType={emergency.emergencyType}
           emergencyLocation={emergency.emergencyLocation}
           date={emergency.date}

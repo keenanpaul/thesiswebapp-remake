@@ -7,7 +7,7 @@ export default class MenuTabs extends Component {
   getPanes = () => {
     const panes = [
       {
-        menuItem: { key: "map", icon: "users", content: "City Map" },
+        menuItem: { key: "map", icon: "map", content: "City Map" },
         render: () => (
           <Tab.Pane>
             <CityMap />
@@ -17,7 +17,7 @@ export default class MenuTabs extends Component {
       {
         menuItem: {
           key: "emergencyForm",
-          icon: "users",
+          icon: "newspaper",
           content: "Add Emergency"
         },
         render: () => (
