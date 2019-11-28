@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import Menu from "./Menu";
 import EmergencyList from "../Emergency/EmergencyList";
-import CityMap from "./CityMap";
+import auth from "../../authentication/auth";
 
 export default class DashboardCCP extends Component {
-  constructor(props) {
-    super(props);
-  }
+  handleLogout = () => {
+    auth.logout(() => {
+      this.props.history.push("/");
+    });
+  };
 
   render() {
     return (
@@ -16,7 +18,7 @@ export default class DashboardCCP extends Component {
         </div>
         <div style={{ paddingLeft: "258px" }}>
           <div>
-            <Menu />
+            <Menu logout={this.handleLogout} />
           </div>
         </div>
       </div>

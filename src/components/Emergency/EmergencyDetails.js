@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Card, Modal } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 import EmergencyDetailsModal from "./EmergencyDetailsModal";
 
 export default class EmergencyDetails extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CityMap from "./CityMap";
 import EmergencyForm from "../Emergency/EmergencyForm";
-import { Header, Image, Button, Tab } from "semantic-ui-react";
+import { Tab } from "semantic-ui-react";
 
 export default class MenuTabs extends Component {
   getPanes = () => {

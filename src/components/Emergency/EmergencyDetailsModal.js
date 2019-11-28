@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { Modal, Button } from "semantic-ui-react";
 
 export default class EmergencyDetailsModal extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>

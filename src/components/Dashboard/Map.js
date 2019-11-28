@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  withGoogleMap,
-  GoogleMap,
-  withScriptjs,
-  Marker,
-  Circle
-} from "react-google-maps";
+import { withGoogleMap, GoogleMap, withScriptjs } from "react-google-maps";
 import { compose, withProps, withStateHandlers } from "recompose";
-import { Button, Modal } from "semantic-ui-react";
 
 const Map = compose(
   withProps({
