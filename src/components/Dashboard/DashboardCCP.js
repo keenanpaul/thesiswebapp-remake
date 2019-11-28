@@ -3,7 +3,7 @@ import Menu from "./Menu";
 import EmergencyList from "../Emergency/EmergencyList";
 import CityMap from "./CityMap";
 
-export default class Dashboard extends Component {
+export default class DashboardCCP extends Component {
   constructor(props) {
     super(props);
   }

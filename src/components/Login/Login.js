@@ -1,7 +1,13 @@
 import React, { Component } from "react";
+import auth from "../../authentication/auth";
 import { Button, Form, Grid, Segment } from "semantic-ui-react";
 
 export default class Login extends Component {
+  loginHandler = () => {
+    auth.login(() => {
+      this.props.history.push("/dashboardCCP");
+    });
+  };
   render() {
     return (
       <Grid
@@ -27,7 +33,12 @@ export default class Login extends Component {
                 type="password"
               />
 
-              <Button color="teal" fluid size="large">
+              <Button
+                onClick={() => this.loginHandler()}
+                color="teal"
+                fluid
+                size="large"
+              >
                 Login
               </Button>
             </Segment>
